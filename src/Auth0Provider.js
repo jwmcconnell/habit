@@ -12,11 +12,13 @@ export const Auth0Context = React.createContext();
 export const useAuth0 = () => useContext(Auth0Context);
 
 export const withSession = Comp => {
+  console.log('in with session');
   return function WithSessionHOC(props) {
     const { isAuthenticated, loading, auth0Client } = useAuth0();
+    console.log('isAuth', isAuthenticated, 'loading', loading);
     if(!isAuthenticated && !loading) auth0Client.loginWithRedirect();
 
-    if(!isAuthenticated) return null;
+    if(!isAuthenticated && loading) return null;
 
     return <Comp {...props} />;
   };
@@ -47,7 +49,7 @@ export default function Auth0Provider({ children, onRedirectCallback = DEFAULT_R
         setUser(user);
 
         const claims = await auth0.getIdTokenClaims();
-        setToken(claims.__raw);
+        setToken(claims);
       }
 
       updateLoading(false);

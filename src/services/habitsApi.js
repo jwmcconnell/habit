@@ -3,7 +3,7 @@ export const setToken = newToken => {
   token = newToken;
 };
 
-export const postHabits = (habit, description) => {
+export const postHabit = (habit, description) => {
   return fetch(`${process.env.API_URL}/api/v1/habits`, {
     method: 'post',
     body: JSON.stringify({ habit, description }),
