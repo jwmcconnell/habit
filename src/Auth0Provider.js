@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-// import { Redirect } from 'react-router-dom';
 import createAuth0Client from '@auth0/auth0-spa-js';
 
 const DEFAULT_REDIRECT_CALLBACK = () => {
